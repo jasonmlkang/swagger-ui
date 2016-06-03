@@ -54,7 +54,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
       });
     }
 
-    if ("isValidate" in opts.swaggerOptions && !opts.swaggerOptions.isValidate) {
+    if ('isValidate' in opts.swaggerOptions && !opts.swaggerOptions.isValidate) {
       this.model.validatorUrl = null;
     } else if ('validatorUrl' in opts.swaggerOptions) {
       // Validator URL specified explicitly

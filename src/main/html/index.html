@@ -41,6 +41,14 @@
         url = "http://petstore.swagger.io/v2/swagger.json";
       }
 
+      var hideValidator = window.location.search.match(/hideValidator/);
+      if (hideValidator && hideValidator.length > 0) {
+        hideValidator = true;
+      }
+      else {
+        hideValidator = false;
+      }
+
       hljs.configure({
         highlightSizeThreshold: 5000
       });
@@ -53,7 +61,7 @@
         url: url,
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-        isValidate: false,
+        hideValidator: hideValidator,
         onComplete: function(swaggerApi, swaggerUi){
           if(typeof initOAuth == "function") {
             initOAuth({

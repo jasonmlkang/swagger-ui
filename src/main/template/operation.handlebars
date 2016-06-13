@@ -6,7 +6,13 @@
           <a href='#!/{{encodedParentId}}/{{nickname}}' class="toggleOperation">{{method}}</a>
           </span>
           <span class='path'>
-          <a href='#!/{{encodedParentId}}/{{nickname}}' class="toggleOperation {{#if deprecated}}deprecated{{/if}}">{{path}}</a>
+          <a href='#!/{{encodedParentId}}/{{nickname}}' class="toggleOperation {{#if deprecated}}deprecated{{/if}}">
+            {{#if pathPrefix}}
+              {{pathPrefix}}{{path}}
+            {{else}}
+              {{path}}
+            {{/if}}
+          </a>
           </span>
         </h3>
         <ul class='options'>

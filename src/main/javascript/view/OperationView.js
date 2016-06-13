@@ -27,7 +27,13 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       if (opts.swaggerOptions.showRequestHeaders) {
         this.model.showRequestHeaders = true;
       }
+
+      if (opts.swaggerOptions.pathPrefix) {
+        this.model.pathPrefix = opts.swaggerOptions.pathPrefix;
+        this.model.host += opts.swaggerOptions.pathPrefix;
+      }
     }
+
     return this;
   },
 

@@ -34,6 +34,7 @@
 
   <script type="text/javascript">
     $(function () {
+      // Get url
       var url = window.location.search.match(/url=([^&]+)/);
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
@@ -41,12 +42,32 @@
         url = "http://petstore.swagger.io/v2/swagger.json";
       }
 
+      // Get hideValidator
       var hideValidator = window.location.search.match(/hideValidator/);
       if (hideValidator && hideValidator.length > 0) {
         hideValidator = true;
       }
       else {
         hideValidator = false;
+      }
+
+      // Get pathPrefix
+      var pathPrefix = window.location.search.match(/pathPrefix=([^&]+)/);
+      if (pathPrefix && pathPrefix.length > 1) {
+        pathPrefix = decodeURIComponent(pathPrefix[1]);
+
+        // Make sure begins with '/'
+        if (pathPrefix[0] != '/') {
+          pathPrefix = '/' + pathPrefix;
+        }
+
+        // Make sure do not end with '/'
+        while (pathPrefix[pathPrefix.length-1] == '/') {
+          pathPrefix = pathPrefix.substr(0, pathPrefix.length-1);
+        }
+      }
+      else {
+        pathPrefix = "";
       }
 
       hljs.configure({
@@ -62,6 +83,7 @@
         dom_id: "swagger-ui-container",
         supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
         hideValidator: hideValidator,
+        pathPrefix: pathPrefix,
         onComplete: function(swaggerApi, swaggerUi){
           if(typeof initOAuth == "function") {
             initOAuth({

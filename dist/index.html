@@ -51,6 +51,18 @@
         hideValidator = false;
       }
 
+      // Get host
+      var host = window.location.search.match(/host=([^&]+)/);
+      if (host && host.length > 1) {
+        host = decodeURIComponent(host[1]);
+        if (host.includes("/")) {
+          host = "";
+        }
+      }
+      else {
+        host = "";
+      }
+
       // Get pathPrefix
       var pathPrefix = window.location.search.match(/pathPrefix=([^&]+)/);
       if (pathPrefix && pathPrefix.length > 1) {
@@ -84,6 +96,7 @@
         supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
         hideValidator: hideValidator,
         pathPrefix: pathPrefix,
+        host: host,
         onComplete: function(swaggerApi, swaggerUi){
           if(typeof initOAuth == "function") {
             initOAuth({

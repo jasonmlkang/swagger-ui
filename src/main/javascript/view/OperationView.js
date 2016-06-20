@@ -28,6 +28,10 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         this.model.showRequestHeaders = true;
       }
 
+      if (opts.swaggerOptions.host) {
+        this.model.host = opts.swaggerOptions.host;
+      }
+
       if (opts.swaggerOptions.pathPrefix) {
         this.model.pathPrefix = opts.swaggerOptions.pathPrefix;
         this.model.host += opts.swaggerOptions.pathPrefix;
